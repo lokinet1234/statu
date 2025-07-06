@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top of the viewport */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    padding: 20px; /* Add some padding around the collage */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.collage-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    width: 100%; /* Take full width of parent (body padding applied) */
+    max-width: 800px; /* Limit overall width for better presentation */
+    background-color: #fff; /* White background for the collage area */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Important for containing elements like the scrolling text */
+}
+
+/* Top Section: Book Cover */
+.book-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #dedede; /* Light grey background for the book cover area */
+}
+
+.book-cover img {
+    max-width: 100%; /* Ensure image fits container */
+    height: auto;
+    display: block; /* Remove extra space below image */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Middle Section: Yellow Bar */
+.yellow-bar {
+    background-color: #ffeb3b; /* Yellow color */
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #ccc; /* Separator line */
+    border-bottom: 2px solid #ccc; /* Separator line */
+}
+
+.yellow-bar h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.small-text-area {
+    font-size: 0.8em;
+    line-height: 1.4;
+    color: #555;
+    text-align: left;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.small-text-area .scribble-placeholder {
+    font-style: italic;
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+}
+
+/* Bottom Section: Horizontally Scrolling Text */
+.scrolling-text-container {
+    width: 100%;
+    height: 150px; /* Adjust height as needed for your text */
+    overflow: hidden; /* Hides content outside this box */
+    background-color: black;
+    position: relative; /* Needed for absolute positioning or animation of children if using JS */
+    display: flex; /* Use flex to align text content */
+    align-items: center; /* Vertically center the text */
+}
+
+.scrolling-text-content {
+    display: flex; /* Make children (spans) inline-flex to stay on one line */
+    white-space: nowrap; /* Keep all text on a single line */
+    animation: scrollText 30s linear infinite; /* Animation definition */
+    color: white; /* Text color */
+    font-size: 3.5em; /* Large text size */
+    font-weight: bold;
+    text-transform: uppercase; /* Match the original image style */
+    line-height: 1; /* Adjust line height for closer spacing */
+}
+
+.scrolling-text-content span {
+    display: flex; /* Treat each span as a block for line breaks */
+    flex-direction: column; /* Stack lines vertically within each span clone */
+    padding-right: 40px; /* Space between repeated text blocks */
+    flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+/* Ensure spaces are visible */
+.scrolling-text-content span:last-child {
+    padding-right: 0; /* No extra padding on the very last element */
+}
+
+
+/* Keyframes for the scrolling animation */
+@keyframes scrollText {
+    0% {
+        transform: translateX(0%); /* Start at original position */
+    }
+    100% {
+        /* Scroll left by the width of one full set of text.
+           This value needs to be adjusted based on the actual content width.
+           We'll use a percentage to ensure it loops smoothly, or half the content width.
+           For simplicity, moving beyond 50% often works for duplicated content.
+        */
+        transform: translateX(-50%); /* Moves the content left by half its total width */
+    }
+}
